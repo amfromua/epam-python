@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.6
 
 class SchoolMember:
     '''Base class for everybody in school'''
