@@ -39,12 +39,7 @@ class Matrix:
         """Function to generate view of matrix
         """
 
-        matrix_view = ''
-        for i in self.matrix:
-            for row in i:
-                matrix_view += str(row) + ' '
-            matrix_view += ' \n'
-        return matrix_view
+        return '[' + '\n'.join(['{}'.format(row) for row in self.matrix]) + ']\n'
 
 
     def __eq__(self, other):
@@ -156,6 +151,6 @@ if __name__ == "__main__":
     a = Matrix(3, 3)
     b = Matrix(3, 6)
     print(a)
-    print(b)
+    print(a.is_symmetric())
 
 
