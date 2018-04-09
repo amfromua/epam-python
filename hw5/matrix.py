@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.6
 
 import random
-
+import itertools
 
 class Matrix:
     """Class for matrix and operations with them
@@ -9,7 +9,7 @@ class Matrix:
 
 
     def __init__(self, *args):
-        """Creates matrix
+        """Creates matrix and checks if everything in matrix is ok
 
             :param args: int or list
            :param args: takes number of rows and columns of matrix or a whole matrix
@@ -18,11 +18,11 @@ class Matrix:
 
         self.result = []
         if len(args) == 1 and isinstance(args[0], list):
-            for el in args[0]:
-                if not isinstance(el, list):
-                    raise TypeError("Row of matrix must be list")
-                if not all(map(lambda x: isinstance(x, int), el)):
-                    raise ValueError('Elements of row must be int')
+            for i in range(len(args[0])):
+                if i > 0 and len(args[0][i]) != len(args[0][i-1]):
+                    raise ValueError('It is not a great matrix')
+            if not all(isinstance(x, int) for x in itertools.chain(*args[0])):
+                raise ValueError('There are not only integers in matrix')
             self.matrix = args[0]
             self.col = len(args[0][0])
             self.row = len(args[0])
@@ -49,7 +49,6 @@ class Matrix:
 
     def __eq__(self, other):
         """Function that checks wheather matrix are equal
-
         :param other: two matrixes Matrix type
         :return: bool
         """
@@ -66,7 +65,6 @@ class Matrix:
 
     def transposition(self):
         """Transpose matrix
-
         :return: transposed matrix Matrix type
         """
 
@@ -74,7 +72,6 @@ class Matrix:
 
     def is_squared(self):
         """Checks wheather matrix is squared
-
         :return: bool
         """
 
@@ -84,7 +81,6 @@ class Matrix:
 
     def __add__(self, other):
         """Sums two matrix
-
         :param other: two matrix
         :return: matrix Matrix type
         """
@@ -97,7 +93,6 @@ class Matrix:
 
     def __sub__(self, other):
         """ Substruct two matrix
-
         :param other: two matrix
         :return: matrix Matrix type
         """
@@ -110,7 +105,6 @@ class Matrix:
 
     def __mul__(self, other):
         """Multiply two matrix
-
         :param other: two matrix
         :return: matrix Matrix type
         """
@@ -130,7 +124,6 @@ class Matrix:
 
     def scalar(self, num):
         """Multyply matrix on number
-
         :param num:
         :return: matrix Matrix type
         :raises: ValueError
@@ -148,7 +141,6 @@ class Matrix:
 
     def is_symmetric(self):
         """Checks wheather matrix is symmetric
-
         :return: bool
         :raises: ValueError
         """
@@ -163,8 +155,7 @@ class Matrix:
 if __name__ == "__main__":
     a = Matrix(3, 3)
     b = Matrix(3, 6)
-
-
-
+    print(a)
+    print(b)
 
 
