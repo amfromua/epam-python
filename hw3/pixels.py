@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.6
+import functools
 
 def validate(low_bound: int, upper_bound: int):
     """Decorator that validates values for a pixel
@@ -8,6 +9,7 @@ def validate(low_bound: int, upper_bound: int):
     :return:
     """
     def decorator(function):
+        @functools.wraps(function)
         def wrapper(*args):
             if all(number in range(low_bound,upper_bound) for number in [*args]):
                 function(*args)
