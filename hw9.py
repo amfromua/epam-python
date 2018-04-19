@@ -38,4 +38,7 @@ class ContextManager:
 
 if __name__ == '__main__':
     with ContextManager('somefile.txt') as file:
-        3 / 0
+        try:
+            3 / 0
+        except ZeroDivisionError:
+            raise ZeroDivisionError
